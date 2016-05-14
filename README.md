@@ -1,26 +1,6 @@
-# Ember-cli-ajax-logger
+# Ember-cli-ajax-logger [![Travis CI Build Status](https://api.travis-ci.org/vvscode/js--ember-cli-ajax-logger.svg)
 
-This README outlines the details of collaborating on this Ember addon.
+This simple ember-cli addon add ability to log ajax requests inside application.
 
-## Installation
-
-* `git clone` this repository
-* `npm install`
-* `bower install`
-
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+##Motivation
+Add access to requests/responses logs while intergration testing with Selenium. 
