@@ -1,0 +1,11 @@
+{
+  "extends": "../.eslintrc",
+  "rules": {
+    "space-before-function-paren": ["error", { "anonymous": "ignore", "named": "ignore" }],
+    "no-empty-function": ["error", { "allow": ["functions"] }],
+    "array-callback-return": 0,
+    "arrow-spacing": 0,
+    "newline-after-var": 0,
+    "object-curly-spacing": 0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "ember",
+  "rules": {
+    "arrow-body-style": [ "error", "as-needed" ],
+    "prefer-reflect": [ 2, {"exceptions": [ "apply" ]}],
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never" }]
+  }
+}

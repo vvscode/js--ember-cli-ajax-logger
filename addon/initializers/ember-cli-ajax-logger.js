@@ -9,13 +9,17 @@ const {
 export const defaultOptions = {
   disabled: false,
   globalName: 'emberCliAjaxLogger',
-  getItemForSerializer: (/* info: {event, xhr, settings } */) => {
-
-  }
+  getItemForSerializer: (/* info: {event, xhr, settings } */)=> JSON.stringify({info: 'Some information to serialize'})
 };
 
 export function initialize(application) {
-  const config = typeof application.resolveRegistration === 'function' ? application.resolveRegistration('config:environment') : application.registry.resolve('config:environment');
+  let config;
+
+  if (typeof application.resolveRegistration === 'function') {
+    config = application.resolveRegistration('config:environment');
+  } else {
+    config = application.registry.resolve('config:environment');
+  }
   const customOptions = get(config || {}, 'ember-cli-ajax-logger') || {};
   const options = merge(defaultOptions, customOptions);
 
