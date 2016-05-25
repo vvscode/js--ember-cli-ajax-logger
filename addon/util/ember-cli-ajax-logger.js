@@ -18,5 +18,5 @@ const LoggerObject = {
 export function initLogger(options) {
   getItemForSerializer = options.getItemForSerializer;
   window[options.globalName] = LoggerObject;
-  $(document).ajaxComplete((event, xhr, settings)=> addItem({event, xhr, settings}));
+  $(document).ajaxComplete((event, xhr, settings)=> addItem(event, xhr, settings));
 }

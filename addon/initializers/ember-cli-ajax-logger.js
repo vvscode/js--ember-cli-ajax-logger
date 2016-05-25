@@ -9,13 +9,13 @@ const {
 export const defaultOptions = {
   disabled: false,
   globalName: 'emberCliAjaxLogger',
-  getItemForSerializer: (event, jqXHR, ajaxOptions)=> {
-    const { type, data, url } = ajaxOptions;
+  getItemForSerializer: ({event, xhr, settings})=> {
+    const { type, data, url } = settings;
     return JSON.stringify({
       url,
       type,
       data,
-      responseText: jqXHR.responseText
+      responseText: xhr.responseText
     });
   }
 };
@@ -25,8 +25,13 @@ export function initialize(application) {
 
   if (typeof application.resolveRegistration === 'function') {
     config = application.resolveRegistration('config:environment');
-  } else {
+  } else if (typeof application.registry.resolve === 'function') {
     config = application.registry.resolve('config:environment');
+  } else {
+    // workaround for old projects
+    /* global requirejs */
+    const configName = Object.keys(requirejs.entries).find((item) => item.match(/config\/environment/));
+    config = (requirejs(`${configName}`) || {}).default;
   }
   const customOptions = get(config || {}, 'ember-cli-ajax-logger') || {};
   const options = merge(defaultOptions, customOptions);

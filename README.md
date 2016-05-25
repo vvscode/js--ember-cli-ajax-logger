@@ -49,3 +49,11 @@ module.exports = function(environment) {
   return ENV;
 };
 ```
+
+Option `globalName` set the window property which contains logger object. 
+Logger gives two methods 
+`.clear()` - remove all logged items
+
+and 
+
+`.getSerialized` - return string with array or items, based on `.getItemForSerializer` method
