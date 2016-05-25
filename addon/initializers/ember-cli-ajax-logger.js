@@ -9,7 +9,15 @@ const {
 export const defaultOptions = {
   disabled: false,
   globalName: 'emberCliAjaxLogger',
-  getItemForSerializer: (/* info: {event, xhr, settings } */)=> JSON.stringify({info: 'Some information to serialize'})
+  getItemForSerializer: (event, jqXHR, ajaxOptions)=> {
+    const { type, data, url } = ajaxOptions;
+    return JSON.stringify({
+      url,
+      type,
+      data,
+      responseText: jqXHR.responseText
+    });
+  }
 };
 
 export function initialize(application) {
