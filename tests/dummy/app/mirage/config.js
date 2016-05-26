@@ -1,5 +1,3 @@
-// todo import configs for tests and for dummy app from single place
-
 const methods = ['get', 'post', 'del', 'put'];
 
 export default function() {
@@ -8,18 +6,14 @@ export default function() {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   // to track success
-  methods.forEach((method) => {
-    this[method]('/success', function(/* db, request */) {
-      return { body: `${method} is ok `};
-    });
-  });
+  methods.forEach((method) =>
+    this[method]('/success', () => ({ body: `${method} is ok ` }))
+  );
 
   // to track errors
-  methods.forEach((method) => {
-    this[method]('/fail', function(/* db, request */) {
-      return { body: `${method} is failed `};
-    });
-  });
+  methods.forEach((method) =>
+    this[method]('/fail', () => ({ body: `${method} is failed ` }))
+  );
   // These comments are here to help you get started. Feel free to delete them.
   /*
    Shorthand cheatsheet:

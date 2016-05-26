@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import {initLogger} from '../util/ember-cli-ajax-logger';
+import { initLogger } from '../util/ember-cli-ajax-logger';
 
 const {
   get,
@@ -9,8 +9,9 @@ const {
 export const defaultOptions = {
   disabled: false,
   globalName: 'emberCliAjaxLogger',
-  getItemForSerializer: ({event, xhr, settings})=> {
+  getItemForSerializer: ({ _event, xhr, settings })=> {
     const { type, data, url } = settings;
+
     return JSON.stringify({
       url,
       type,
@@ -30,7 +31,8 @@ export function initialize(application) {
   } else {
     // workaround for old projects
     /* global requirejs */
-    const configName = Object.keys(requirejs.entries).find((item) => item.match(/config\/environment/));
+    const configName = Object.keys(requirejs.entries).find((item)=> item.match(/config\/environment/));
+
     config = (requirejs(`${configName}`) || {}).default;
   }
   const customOptions = get(config || {}, 'ember-cli-ajax-logger') || {};

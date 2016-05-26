@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 const {
   on,
-  computed
+  computed,
+  $: { ajax }
 } = Ember;
 
 const HTTP_METHODS = ['GET', 'PUT', 'DELETE', 'POST'];
@@ -14,16 +15,16 @@ export default Ember.Controller.extend({
 
   makeRequests: on('init', function() {
     HTTP_METHODS.forEach((method) => {
-      $.ajax({
+      ajax({
         url: '/fake-api/success',
         method
       })
-      .always(() => this.notifyPropertyChange('emberCliAjaxLog'));
+        .always(() => this.notifyPropertyChange('emberCliAjaxLog'));
 
-      $.ajax({
-          url: '/fake-api/fail',
-          method
-        })
+      ajax({
+        url: '/fake-api/fail',
+        method
+      })
         .always(() => this.notifyPropertyChange('emberCliAjaxLog'));
     });
   })

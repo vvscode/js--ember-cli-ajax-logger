@@ -5,7 +5,7 @@ const {
 } = Ember;
 
 const log = [];
-const addItem = (event, xhr, settings)=> log.push({event, xhr, settings});
+const addItem = (event, xhr, settings)=> log.push({ event, xhr, settings });
 
 let getItemForSerializer;
 

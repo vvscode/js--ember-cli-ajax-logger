@@ -3,6 +3,9 @@
   "rules": {
     "arrow-body-style": [ "error", "as-needed" ],
     "prefer-reflect": [ 2, {"exceptions": [ "apply" ]}],
-    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never" }]
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never" }],
+    "arrow-parens": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "no-unused-vars": ["error",{ "argsIgnorePattern": "^_" }]
   }
 }
