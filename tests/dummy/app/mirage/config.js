@@ -7,12 +7,12 @@ export default function() {
 
   // to track success
   methods.forEach((method) =>
-    this[method]('/success', () => ({ body: `${method} is ok ` }))
+    this[method]('/success', () => ({ body: `${method} is ok ` }), '200')
   );
 
   // to track errors
   methods.forEach((method) =>
-    this[method]('/fail', () => ({ body: `${method} is failed ` }))
+    this[method]('/fail', () => ({ body: `${method} is failed ` }), '500')
   );
   // These comments are here to help you get started. Feel free to delete them.
   /*

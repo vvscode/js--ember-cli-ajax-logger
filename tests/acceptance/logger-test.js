@@ -10,11 +10,12 @@ const {
 const HTTP_METHODS = ['GET', 'PUT', 'DELETE', 'POST'];
 
 const singleInstanceCount = 1;
+const countOfAssertions = 10;
 
 moduleForAcceptance('Acceptance | logger');
 
 test('visiting /logger', function(assert) {
-  expect(10);
+  expect(countOfAssertions);
   HTTP_METHODS.forEach((method) => {
     ajax({
       url: '/fake-api/success',
