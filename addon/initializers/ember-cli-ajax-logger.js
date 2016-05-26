@@ -26,7 +26,7 @@ export function initialize(application) {
 
   if (typeof application.resolveRegistration === 'function') {
     config = application.resolveRegistration('config:environment');
-  } else if (typeof application.registry.resolve === 'function') {
+  } else if (Boolean(application.registry) && typeof application.registry.resolve === 'function') {
     config = application.registry.resolve('config:environment');
   } else {
     // workaround for old projects
