@@ -1,4 +1,4 @@
-# Ember-cli-ajax-logger [![Travis CI Build Status](https://api.travis-ci.org/vvscode/js--ember-cli-ajax-logger.svg)
+# Ember-cli-ajax-logger ![Travis CI Build Status](https://api.travis-ci.org/vvscode/js--ember-cli-ajax-logger.svg)
 
 This simple ember-cli addon add ability to log ajax requests inside application.
 

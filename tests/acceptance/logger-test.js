@@ -1,4 +1,4 @@
-/* global andThen */
+/* global andThen, expect */
 import Ember from 'ember';
 import {test} from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
@@ -14,6 +14,7 @@ const singleInstanceCount = 1;
 moduleForAcceptance('Acceptance | logger');
 
 test('visiting /logger', function(assert) {
+  expect(10);
   HTTP_METHODS.forEach((method) => {
     ajax({
       url: '/fake-api/success',
