@@ -30,10 +30,17 @@ export function initialize(application) {
     config = application.registry.resolve('config:environment');
   } else {
     // workaround for old projects
-    /* global requirejs */
-    const configName = Object.keys(requirejs.entries).find((item)=> item.match(/config\/environment/));
+    let configName;
 
-    config = (requirejs(`${configName}`) || {}).default;
+    // Next try/catch block used to pass console tests for ember-1.13.x
+    try {
+      /* global requirejs */
+      Object.keys(requirejs.entries).find((item)=> `${item}`.match(/config\/environment/));
+    } catch (e) {
+      configName = '';
+    }
+
+    config = ((Boolean(configName) && requirejs(`${configName}`)) || {}).default;
   }
   const customOptions = get(config || {}, 'ember-cli-ajax-logger') || {};
   const options = merge(defaultOptions, customOptions);

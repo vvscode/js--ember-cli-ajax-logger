@@ -14,7 +14,7 @@ const countOfAssertions = 10;
 
 moduleForAcceptance('Acceptance | logger');
 
-test('visiting /logger', function(assert) {
+test('Checking logged responses', function(assert) {
   expect(countOfAssertions);
   HTTP_METHODS.forEach((method) => {
     ajax({
