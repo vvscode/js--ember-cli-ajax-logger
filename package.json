@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-ajax-logger",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Ember-cli addon to log ajax request while intergration testing (with Selenium or some other tools )",
   "directories": {
     "doc": "doc",
