@@ -9,6 +9,7 @@ const {
 export const defaultOptions = {
   disabled: false,
   globalName: 'emberCliAjaxLogger',
+  /* jshint unused:false */
   getItemForSerializer: ({ _event, xhr, settings })=> {
     const { type, data, url } = settings;
 
@@ -18,7 +19,9 @@ export const defaultOptions = {
       data,
       responseText: xhr.responseText
     });
-  }
+  },
+  /* jshint unused:false */
+  filter: (_item)=> true
 };
 
 export function initialize(application) {
