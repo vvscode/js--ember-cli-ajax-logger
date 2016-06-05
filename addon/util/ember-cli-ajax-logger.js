@@ -7,7 +7,7 @@ const {
 const log = [];
 const addItem = (event, xhr, settings)=> log.push({ event, xhr, settings });
 
-let getItemForSerializer;
+let getItemForSerializer = ()=> 'item';
 
 let filterFunction = ()=> true;
 
@@ -20,11 +20,17 @@ const LoggerObject = {
     if (typeof func === 'function') {
       filterFunction = func;
     }
+  },
+
+  setGetItemForSerializer(func) {
+    if (typeof func === 'function') {
+      getItemForSerializer = func;
+    }
   }
 };
 
 export function initLogger(options) {
-  getItemForSerializer = options.getItemForSerializer;
+  LoggerObject.setGetItemForSerializer(options.getItemForSerializer);
   LoggerObject.setFilterFunction(options.filter);
   window[options.globalName] = LoggerObject;
   $(document).ajaxComplete((event, xhr, settings)=> addItem(event, xhr, settings));

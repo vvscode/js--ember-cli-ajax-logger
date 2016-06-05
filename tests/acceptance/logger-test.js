@@ -10,7 +10,7 @@ const {
 const HTTP_METHODS = ['GET', 'PUT', 'DELETE', 'POST'];
 
 const singleInstanceCount = 1;
-const countOfAssertions = 12;
+const countOfAssertions = 13;
 
 moduleForAcceptance('Acceptance | logger');
 
@@ -110,6 +110,21 @@ test('Checking logged responses', function(assert) {
     window.emberCliAjaxLogger.setFilterFunction(() => true);
     const nonFilteredLog = JSON.parse(window.emberCliAjaxLogger.getSerialized()).map((item) => JSON.parse(item));
     assert.deepEqual(nonFilteredLog, shouldBeLog, 'Should contents non-filtered values');
+
+    /* jshint unused:false */
+    const newFormattedLogShouldBe = [
+      '{\"body\":\"get is ok \"}',
+      '{\"body\":\"get is failed \"}',
+      '{\"body\":\"put is ok \"}',
+      '{\"body\":\"put is failed \"}',
+      '{\"body\":\"del is ok \"}',
+      '{\"body\":\"del is failed \"}',
+      '{\"body\":\"post is ok \"}',
+      '{\"body\":\"post is failed \"}'
+    ];
+    window.emberCliAjaxLogger.setGetItemForSerializer(({ xhr })=> xhr.responseText);
+    const newFormattedLog = JSON.parse(window.emberCliAjaxLogger.getSerialized());
+    assert.deepEqual(newFormattedLog, newFormattedLogShouldBe, 'Should allow change format on the fly');
 
     window.emberCliAjaxLogger.clear();
     assert.deepEqual(window.emberCliAjaxLogger.getSerialized(), '[]', 'Should clear log');
