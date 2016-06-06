@@ -33,5 +33,5 @@ export function initLogger(options) {
   LoggerObject.setGetItemForSerializer(options.getItemForSerializer);
   LoggerObject.setFilterFunction(options.filter);
   window[options.globalName] = LoggerObject;
-  $(document).ajaxComplete((event, xhr, settings)=> addItem(event, xhr, settings));
+  $(document).ajaxComplete(addItem);
 }
