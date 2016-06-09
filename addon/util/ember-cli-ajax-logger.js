@@ -20,18 +20,35 @@ const LoggerObject = {
     if (typeof func === 'function') {
       filterFunction = func;
     }
+
+    return LoggerObject;
   },
 
   setGetItemForSerializer(func) {
     if (typeof func === 'function') {
       getItemForSerializer = func;
     }
+
+    return LoggerObject;
+  },
+
+  register(name) {
+    window[name] = LoggerObject;
+
+    return LoggerObject;
+  },
+
+  subscribe() {
+    $(document).ajaxComplete(addItem);
+
+    return LoggerObject;
   }
 };
 
 export function initLogger(options) {
-  LoggerObject.setGetItemForSerializer(options.getItemForSerializer);
-  LoggerObject.setFilterFunction(options.filter);
-  window[options.globalName] = LoggerObject;
-  $(document).ajaxComplete(addItem);
+  LoggerObject
+    .setGetItemForSerializer(options.getItemForSerializer)
+    .setFilterFunction(options.filter)
+    .register(options.globalName)
+    .subscribe();
 }
