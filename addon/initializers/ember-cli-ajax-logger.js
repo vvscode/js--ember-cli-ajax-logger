@@ -38,7 +38,7 @@ export function initialize(application) {
     // Next try/catch block used to pass console tests for ember-1.13.x
     try {
       /* global requirejs */
-      Object.keys(requirejs.entries).find((item)=> `${item}`.match(/config\/environment/));
+      configName = Object.keys(requirejs.entries).find((item)=> `${item}`.match(/config\/environment/));
     } catch (e) {
       configName = '';
     }
