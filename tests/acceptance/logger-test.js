@@ -10,7 +10,7 @@ const {
 const HTTP_METHODS = ['GET', 'PUT', 'DELETE', 'POST'];
 
 const singleInstanceCount = 1;
-const countOfAssertions = 13;
+const countOfAssertions = 15;
 
 moduleForAcceptance('Acceptance | logger');
 
@@ -128,5 +128,29 @@ test('Checking logged responses', function(assert) {
 
     window.emberCliAjaxLogger.clear();
     assert.deepEqual(window.emberCliAjaxLogger.getSerialized(), '[]', 'Should clear log');
+  });
+
+  andThen(function() {
+    window.emberCliAjaxLogger.disableLogging();
+    ajax({
+      url: '/fake-api/fail',
+      method: 'GET'
+    });
+  });
+
+  andThen(function() {
+    assert.deepEqual(window.emberCliAjaxLogger.getSerialized(), '[]', 'Should not log items if disabled');
+  });
+
+  andThen(function() {
+    window.emberCliAjaxLogger.enableLogging();
+    ajax({
+      url: '/fake-api/fail',
+      method: 'GET'
+    });
+  });
+
+  andThen(function() {
+    assert.deepEqual(JSON.parse(window.emberCliAjaxLogger.getSerialized()).length, singleInstanceCount, 'Should log items if enabled');
   });
 });

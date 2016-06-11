@@ -5,10 +5,9 @@ const {
 } = Ember;
 
 const log = [];
-const addItem = (event, xhr, settings)=> log.push({ event, xhr, settings });
-
+let isEnabled = false;
+const addItem = (event, xhr, settings)=> Boolean(isEnabled) && log.push({ event, xhr, settings });
 let getItemForSerializer = ()=> 'item';
-
 let filterFunction = ()=> true;
 
 const LoggerObject = {
@@ -42,6 +41,18 @@ const LoggerObject = {
     $(document).ajaxComplete(addItem);
 
     return LoggerObject;
+  },
+
+  enableLogging() {
+    isEnabled = true;
+
+    return LoggerObject;
+  },
+
+  disableLogging() {
+    isEnabled = false;
+
+    return LoggerObject;
   }
 };
 
@@ -50,5 +61,6 @@ export function initLogger(options) {
     .setGetItemForSerializer(options.getItemForSerializer)
     .setFilterFunction(options.filter)
     .register(options.globalName)
-    .subscribe();
+    .subscribe()
+    .enableLogging();
 }
