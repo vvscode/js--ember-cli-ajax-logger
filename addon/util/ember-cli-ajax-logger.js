@@ -13,6 +13,7 @@ let filterFunction = ()=> true;
 const LoggerObject = {
   clear: ()=> {
     log.length = 0;
+
     return LoggerObject;
   },
 
